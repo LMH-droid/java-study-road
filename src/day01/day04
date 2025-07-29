@@ -31,3 +31,45 @@ public class Test {
 
     }
 }
+
+
+
+
+abstract 抽象类
+package d04;
+
+public abstract class AnimalAbstract {
+    public abstract void eat();
+        public abstract void sleep();
+}
+
+
+
+
+package d04;
+
+public class Cat extends AnimalAbstract {
+    @Override
+    public void eat(){
+        System.out.println( "猫吃鱼");
+    }
+    @Override
+    public  void sleep(){
+        System.out.println("猫睡觉");
+    }
+}
+
+
+
+
+
+package d04;
+
+public class TestAbstract {
+    public static void main(String[] args){
+        AnimalAbstract Cat = new Cat();
+        Cat.eat();
+        Cat.sleep();
+    }
+}
+
