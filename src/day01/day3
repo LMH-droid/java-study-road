@@ -1,0 +1,55 @@
+package day03;
+
+public class Animal {
+ private  String name;
+ public Animal(String name){
+     this.name = name;
+ }
+ public void speak(){
+     System.out.println(name + "声音");
+ }
+ public String getName(){
+     return name;
+ }
+}
+
+
+package day03;
+
+public class Dog extends Animal {
+    public Dog (String name){
+        super(name);
+    }
+    @Override
+    public void speak(){
+        System.out.println(getName() + "汪汪");
+    }
+    public void wagTail(){
+        System.out.println(getName() + "摇尾巴");    }
+}
+
+
+package day03;
+
+public class Cat extends Animal{
+    public Cat(String name){
+        super(name);
+    }
+    @Override
+    public void speak(){
+        System.out.println(getName() + "喵喵");
+    }
+}
+
+
+package day03;
+
+public class Main {
+    public static void main(String[] args){
+        Animal a1 = new Dog("bulusi");
+        Animal a2 = new Cat("hajimi");
+    a1.speak();
+        a2.speak();
+        ((Dog) a1).wagTail();
+    }
+}
