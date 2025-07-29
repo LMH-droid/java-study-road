@@ -1,0 +1,33 @@
+package day04;
+
+public interface Animal {
+    void eat();
+    void sleep();
+}
+
+
+package day04;
+
+public class Dog  implements Animal{
+    @Override
+    public void eat(){
+        System.out.println("狗吃饭");
+    }
+    @Override
+    public void sleep(){
+        System.out.println("狗睡觉");
+    }
+}
+
+
+package day04;
+
+public class Test {
+    public static void main(String[] args){
+        Animal Dog = new Dog();
+
+        Dog.eat();
+        Dog.sleep();
+
+    }
+}
