@@ -73,3 +73,39 @@ public class TestAbstract {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+package da04;
+
+public class Outerclass {
+    private String name = "外部类";
+
+    public class InnerClass{
+        public void show(){
+            System.out.println("我是"+name+"的成员内部量");
+        }
+    }
+}
+
+
+
+
+package da04;
+
+public class InnerClass {
+    public static void main(String[] args){
+        Outerclass outer = new Outerclass();
+        Outerclass.InnerClass Inner = outer.new InnerClass();
+        Inner.show();
+
+    }
+}
+
