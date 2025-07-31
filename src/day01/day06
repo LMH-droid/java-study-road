@@ -1,0 +1,134 @@
+package day06;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileReadDemo {
+    public static  void main(String[] args){
+        File file = new File("src/day06/input");
+        FileReader fileReader = null;
+        try{
+            fileReader = new FileReader(file);
+            int ch;
+            while ((ch = fileReader.read()) !=-1){
+                System.out.println((char) ch);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            if (fileReader !=null){
+                try{
+                    fileReader.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+
+            }
+        }
+    }
+
+
+
+
+package day06;
+
+import java.io.File;
+import java.io.FileWriter;
+import  java.io.IOException;
+
+public class FileWriteDomo {
+    public  static  void main (String[] args){
+        File file = new File("src/day06/output.txt");
+        FileWriter fileWriter = null;
+        try{
+            fileWriter = new FileWriter(file);
+            fileWriter.write("hellow java");
+            fileWriter.flush();
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            if (fileWriter !=null){
+                try{
+                    fileWriter.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+
+
+package day06;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import  java.io.IOException;
+
+public class BufferedReaderDemo {
+    private static void main(String[] args){
+        File file = new File("src/day06/input");
+        BufferedReader bufferedReader = null;
+    try{
+        bufferedReader = new BufferedReader( new FileReader(file));
+    String line;
+    while ((line = bufferedReader.readLine()) !=null){
+        System.out.println(line);
+        }
+    }catch (IOException e){
+        e.printStackTrace();
+    }finally {
+        if (bufferedReader !=null){
+            try {
+                bufferedReader.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+    }
+}
+
+
+package day06;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
+public class BufferedWriterDemo {
+    public static void main(String[] args) {
+        File file = new File("src/day06/output");
+        BufferedWriter bufferedWriter = null;
+        try {
+            bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write("Hello, Java IO with Buffer!");
+            bufferedWriter.newLine(); // 写入一个换行符
+            bufferedWriter.write("This is a new line.");
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bufferedWriter != null) {
+                try {
+                    bufferedWriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
