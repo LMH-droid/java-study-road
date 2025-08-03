@@ -1,0 +1,54 @@
+package day09;
+
+            public class ThreadlnterrupDemo {
+                public static void main(String[] args)throws InterruptedException{
+                    Thread thread = new Thread(() ->{
+                        while(!Thread.currentThread().isInterrupted()){
+                            System.out.println("线程正在运行");
+                            try{
+                                Thread.sleep(1000);
+                            }catch (InterruptedException e){
+                                Thread.currentThread().isInterrupted();
+                                System.out.println("线程被中断...");
+                                break;
+                            }
+                        }
+        });
+        thread.start();
+        Thread.sleep(3000);
+        thread.interrupt();
+    }
+}
+
+package day09;
+
+public class ThreadPriorityDemo {
+    public  static void main(String[] args){
+        Thread thread1 = new Thread(() ->{
+            for (int i =0;i<5;i++){
+                System.out.println("线程1运行ing..." +i);
+                try{
+                    Thread.sleep(100);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        Thread thread2 = new Thread(() ->{
+            for(int i=0;i<5;i++){
+                System.out.println("线程2运行ing..." +i);
+            try{
+                Thread.sleep(100);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+            }
+        });
+            thread1.setPriority(Thread.MIN_PRIORITY);
+            thread2.setPriority(Thread.MAX_PRIORITY);
+    thread1.start();
+    thread2.start();
+    }
+}
+
+
