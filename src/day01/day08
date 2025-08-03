@@ -1,0 +1,79 @@
+package day08;
+
+public class SynchronizedDemo {
+   private int count = 0;
+
+   public synchronized void increment() {
+      count++;
+   }
+
+   public void incrementWithBlock() {
+      synchronized (this) {
+         count++;
+      }
+   }
+
+   public static void main(String[] args) {
+      SynchronizedDemo demo = new SynchronizedDemo();
+      Thread t1 = new Thread(() -> {
+         for (int i = 0; i < 1000; i++) {
+            demo.increment();
+         }
+      });
+      Thread t2 = new Thread(() -> {
+         for (int i = 0; i < 1000; i++) {
+            demo.increment();
+         }
+      });
+      t1.start();
+      t2.start();
+      try{
+         t1.join();
+         t2.join();
+      }catch(InterruptedException e){
+         e.printStackTrace();
+      }
+      System.out.println("最终计数"+demo.count);
+   }
+}
+
+
+package day08;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+public class ReentrantLockDemo {
+    private final ReentrantLock lock = new ReentrantLock();
+    private int count = 0;
+    public void increment(){
+        lock.lock();
+        try{
+            count++;
+        }finally{
+            lock.unlock();
+        }
+    }
+    public static void main(String[] args){
+        ReentrantLockDemo demo = new ReentrantLockDemo();
+        Thread t1 = new Thread(() ->{
+            for(int i=0;i<1000;i++){
+                demo.increment();
+            }
+        });
+        Thread t2 = new Thread(() ->{
+            for(int i=0;i<1000;i++){
+                demo.increment();
+            }
+        });
+        t1.start();
+        t2.start();
+        try{
+            t1.join();
+            t2.join();
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+        System.out.println("最终计数"+demo.count);
+    }
+
+}
