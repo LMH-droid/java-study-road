@@ -1,0 +1,81 @@
+package day10;
+
+public class WaitNotifyDemo {
+    private static final Object lock = new Object();
+    //初始值设为flase；
+    private static boolean flag = false;
+    public static void main(String[] args){
+        Thread producer = new Thread(() ->{
+            synchronized(lock){
+                while (!flag){
+                    try{
+                     System.out.println("生产者等待...");
+                     //线程等待并且释放当前锁
+                    lock.wait();
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println("生产者生产完成，通知消费者...");
+                flag = false;
+                //唤醒一个正在等待对象锁的进程（随机唤醒）
+                lock.notify();
+            }
+        });
+        Thread consumer = new Thread(() ->{
+            synchronized(lock){
+                flag = true;
+                    flag = true;
+                    System.out.println("消费者消费完成正在通知生产者...");
+                lock.notify();
+            }
+        });
+        producer.start();
+        consumer.start();
+    }
+}
+
+
+
+package day10;
+
+import com.sun.source.tree.SynchronizedTree;
+
+public class DeadlockDemo {
+    //创建两个锁
+    private static final Object lock1 = new Object();
+    private static final Object lock2 = new Object();
+    public static void main(String[] args){
+        Thread t1 = new Thread(() ->{
+            synchronized(lock1){
+                System.out.println("线程一获得了锁1，尝试获取锁2...");
+                try{
+                    Thread.sleep(100);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+                synchronized(lock2){
+                    System.out.println("线程1获取了锁2");
+                }
+            }
+        });
+        Thread t2 = new Thread(() ->{
+            synchronized(lock2){
+                System.out.println("线程2获得了锁2正在尝试获取锁1");
+                try{
+                    Thread.sleep(100);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+             synchronized(lock1){
+                    System.out.println("线程2获取了锁1");
+             }
+            }
+        });
+        t1.start();
+        t2.start();
+    }
+}
+
+
+
