@@ -1,0 +1,121 @@
+package day11;
+
+import java.io.BufferedReader;
+import  java.io.FileReader;
+import java.io.IOException;
+
+public class BufferedReaderDemo {
+    public static void main(String[] args){
+        BufferedReader br = null;
+        try{
+            br = new BufferedReader(new FileReader("Src/day11/input.txt"));
+            String line;
+            while((line = br.readLine())!=null){
+                System.out.println(line);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally{
+            if(br != null){
+                try{
+                    br.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+
+
+package day11;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.FieldPosition;
+
+public class BufferedWriterDemo {
+    public static void main(String[] args){
+        BufferedWriter bw = null;
+        try{
+            bw = new BufferedWriter(new FileWriter("src/day11/output.txt"));
+            bw.write("Hello,java IO with Buffer!");
+            bw.newLine();
+            bw.write("This is a new line.");
+            bw.flush();
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally{
+            if(bw != null){
+                try{
+                    bw.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+
+
+package day11;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class FilelnputStreamDemo {
+    public static void main(String[] args) {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream("src/day11/input.txt");
+            int ch;
+            while ((ch = fis.read()) != -1){
+                System.out.println((char) ch);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if (fis !=null){
+                try {
+                    fis.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+
+
+package day11;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class FileOutputStreamDemo {
+    public static void main(String[] args){
+        FileOutputStream fos = null;
+        try{
+            fos = new FileOutputStream("src/day011/output.txt");
+            String content = "hello,java io!";
+            fos.write(content.getBytes());
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally{
+            if(fos !=null){
+                try{
+                    fos.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+}
+
