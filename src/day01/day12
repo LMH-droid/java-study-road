@@ -1,0 +1,67 @@
+package day12;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListDemo {
+    public static void main(String[] args){
+        List<String> list = new ArrayList<>();
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+
+        System.out.println("列表内容" +list);
+        System.out.println("是否包含Banana" +list.contains("banana"));
+        System.out.println("第一个元素" + list.get(0));
+        list.remove("banana");
+        System.out.println("移除banana后的列表：" +list);
+        list.add(1,"Date");
+        System.out.println("插入Date后的列表：" + list);
+        list.clear();
+        System.out.println("清空列表后" +list);
+    }
+}
+
+
+package day12;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapDemo {
+    public static void main(String[] args){
+        Map<String,Integer>map = new HashMap<>();
+        map.put("Alice", 25);
+        map.put("Bob" , 30);
+        map.put("Charlie" , 35);
+        System.out.println("映射内容" + map);
+        System.out.println("Alice的年龄" + map.get("Alice"));
+        map.put("Alice" , 26);
+        System.out.println("更新后的Alice年龄映射"+ map);
+        map.remove("Bob");
+        System.out.println("移除Bob后的映射" + map);
+        System.out.println("是否包含Charlie：" +map.containsKey("Charlie"));
+        System.out.println("是否包含年龄30岁" + map.containsValue(30));
+    }
+}
+
+
+package day12;
+
+import java.util.TreeSet;
+
+public class TreeSetDemo {
+    public static void main(String[] args){
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(10);
+        set.add(5);
+        set.add(20);
+        set.add(15);
+        System.out.println("有序集合内容" + set);
+        System.out.println("有序集合第一个元素" + set.first());
+        System.out.println("有序集合的最后一个内容" + set.last());
+        set.remove(15);
+        System.out.println("移除15后的组合" + set);
+        System.out.println("集合是否包含20" + set.contains(20));
+    }
+}
