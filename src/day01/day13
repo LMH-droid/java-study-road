@@ -1,0 +1,44 @@
+package day13;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GenericsDemo {
+    public static void main(String[] args){
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Hello");
+        stringList.add("World");
+        System.out.println("泛型列表内容："+ stringList);
+
+        printList(stringList);
+    }
+    public static<T> void printList(List<T> list){
+        for (T item : list){
+            System.out.println(item);
+        }
+    }
+}
+
+
+package day13;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
+public class ReflectionDemo {
+    public static void main(String[] args){
+        try{
+            Class<?>clazz = Class.forName("day13.ReflectionDemo");
+            Constructor<?> constructor = clazz.getConstructor();
+            Object obj = constructor.newInstance();
+
+            Method method = clazz.getMethod("pringMessage");
+            method.invoke(obj);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void printMessagr(){
+        System.out.println("Hello,Reflection");
+    }
+}
