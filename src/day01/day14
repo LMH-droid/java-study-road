@@ -1,0 +1,62 @@
+package day14;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class JavaBasicsReview {
+    public static void main(String[] args){
+        int age = 25;
+        double salary = 5000.5;
+        String name = "Alice";
+        boolean isStudent = true;
+
+        System.out.println("name:" + name +"age:" + age +",Salary" +salary+",Is Student:" +isStudent);
+        if(age >= 18){
+            System.out.println(name + "is an adult.");
+        }else{
+            System.out.println(name + "is a minor");
+        }
+        for (int i=0 ;i<5; i++){
+            System.out.println("Iteration" + i);
+        }
+        Person person = new Person("Bob",30);
+        person.sayHello();
+
+        List<String>fruits = new ArrayList<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Cherry");
+        System.out.println("Fruits:" + fruits);
+
+        Map<String,Integer> ages = new HashMap<>();
+        ages.put("Alice" , 25);
+        ages.put("Bob" , 30);
+        System.out.println("Ages:" + ages);
+
+        try{
+            int result = 10/0;
+        }catch(ArithmeticException e){
+            System.out.println("Caught an exception:" + e.getMessage());
+        }
+        Thread thread = new Thread (() ->{
+            for (int i = 0; i<5; i++){
+                System.out.println("Thread running:" +i);
+            }
+        });
+    thread.start();
+    }
+}
+class Person{
+    private String name;
+    private int age;
+
+    public Person(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+    public void sayHello(){
+        System.out.println("Hello,my name is" + name + "and I am" + age + "years old");
+    }
+}
