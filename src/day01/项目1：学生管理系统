@@ -1,0 +1,87 @@
+main：
+
+public class Main {
+    public static void main(String[] args) {
+        StudentManager manager = new StudentManager();
+        // 测试添加
+        manager.addStudent();
+        // 测试显示
+        manager.showAllStudent();
+    }
+}
+
+
+
+student：
+
+public class Student {
+    private String name;        //姓名
+    private String id;          //学号
+    private int age;            //年龄
+
+
+    public Student() {
+    }
+    public Student(String id, String name, int age){
+        this.id= id;
+        this.name=name;
+        this.age= age;
+    }
+    public String getId(){
+        return id;
+    }
+    public void setId(String id){
+        this.id =  id;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public int setAge(){
+        return age;
+    }
+    public void getAge(int age){
+        this.age = age;
+    }
+    public void displayInfo(){
+        System.out.println(  "学号" + this.id +"姓名" + this.name + "年龄" + this.age );
+    }
+} 
+
+studentmanager：
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentManager {
+    private ArrayList<Student> studentList = new ArrayList<>();         //创建数据库
+
+    private Scanner scanner = new Scanner(System.in);            //创建方法用于接受用户数据
+
+    public void addStudent(){
+        System.out.println("请输入学号");
+        String id = scanner.next();
+        System.out.println("请输入名字");
+        String name = scanner.next();
+        System.out.println("请输入年龄");
+        int age = scanner.nextInt();
+
+        Student newstu = new Student(id , name ,age);
+        studentList.add(newstu);
+        System.out.println("数据添加成功");
+    }
+        public void showAllStudent(){
+        System.out.println("---------显示所有学生信息---------");
+
+        if(studentList.isEmpty()){
+            System.out.println("当前未录入学生信息");
+        }else{
+            for (Student stu : studentList){
+                stu.displayInfo();
+            }
+        }
+        }
+}
