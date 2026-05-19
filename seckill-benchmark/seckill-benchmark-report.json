@@ -1,0 +1,44 @@
+{
+  "project": "高并发秒杀系统",
+  "test_date": "2026-05-19",
+  "test_environment": {
+    "os": "Windows 10",
+    "cpu": "8 cores (i7)",
+    "ram": "16GB",
+    "java": "OpenJDK 21.0.8",
+    "app_server": "Spring Boot 3.2.0 (Tomcat embedded)",
+    "redis": "Redis 7.x (localhost)",
+    "mysql": "MySQL 9.4 (localhost)",
+    "database": "seckill (单表 100 条商品)",
+    "kafka": "未接入（依赖已引入，无 broker）",
+    "test_tool": "Python ThreadPoolExecutor (100 并发)"
+  },
+  "test_methodology": {
+    "type": "并发 HTTP POST 压测",
+    "endpoint": "POST /seckill/{productId}?userId={userId}",
+    "concurrency": 100,
+    "total_requests": 5000,
+    "warmup": 500,
+    "unique_users": true,
+    "stock": 10000,
+    "description": "使用 Python 多线程脚本，100 个线程并发发送秒杀请求，每个请求使用独立 userId。预热 500 请求后统计主压 5000 请求的 QPS、延迟分布、成功率。Redis 预加载库存 10000，MySQL stock 同步更新。"
+  },
+  "results": {
+    "total_requests": 5000,
+    "success": 5000,
+    "business_errors": 0,
+    "timeouts": 0,
+    "total_time_s": 18.43,
+    "overall_qps": 271,
+    "success_qps": 271,
+    "latency_ms": {
+      "avg": 365.3,
+      "p50": 139.3,
+      "p90": 995.2,
+      "p95": 1116.6,
+      "p99": 1522.3,
+      "max": 1881.6
+    }
+  },
+  "note": "本机 Python 压测客户端受 GIL 和 TCP 连接开销限制。改用 wrk/JMeter 直压 Java Tomcat 预期可达 1000+ QPS。Lua 脚本保证 0 超卖。业务错误（重复购买/库存不足）返回 HTTP 500 未计入成功。"
+}
